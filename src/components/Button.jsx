@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 const Button = () => {
     return (
         <Link to={'/add-player'}>
-        <div class="btn-container">
-            <button class="glowing-button">
+        <div className="btn-container">
+            <button className="glowing-button">
                 PLAY NOW
-                <span class="arrow">➔</span>
+                <span className="arrow">➔</span>
             </button>
         </div>
         </Link>
