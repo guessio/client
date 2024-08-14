@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import io from "socket.io-client";
 
 const socket = io("https://guessio-server.rollyroller.com");
+// const socket = io("http://localhost:3000");
 
 export default function AddPlayerPage() {
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ export default function AddPlayerPage() {
 
   if (gameStatus  === "playing") {     
         
-    navigate("/app", { state : isRoomMaster  });
+    navigate("/app", { state: isRoomMaster });
   }
 
   return (
@@ -81,7 +82,7 @@ export default function AddPlayerPage() {
               {isRoomMaster ? (
                 <div>
                   <h3>You are the Room Master</h3>
-                  <input
+                  <input className="text-black px-3"
                     type="number"
                     placeholder="Set the secret number"
                     value={secretNumber}

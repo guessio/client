@@ -1,13 +1,13 @@
 import React from 'react';
 
-function Card({ num }) {
+function Card({ num, handleMakeGuess }) {
 
     const handleClick = () => {
         console.log(`Card number: ${num}`);
     };
 
     return (
-        <div className="uno-card" onClick={handleClick}>
+        <div className="uno-card" onClick={handleMakeGuess}>
             <div className="card-inner">
                 <div value={num} className="front" data-content={num}>
                     <div className="front-bg"></div>
