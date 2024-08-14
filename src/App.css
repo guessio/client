@@ -11,14 +11,14 @@
 .btn-container {
   padding: 3px;
   background: linear-gradient(180deg, #ffbc09, #fb5300);
-  /* Yellow to Orange */
+
   border-radius: 19px;
   border: 2px solid #fb0000;
-  /* Red Border */
+
   transform: perspective(850px) rotateX(14deg) rotateY(8deg) rotateZ(-11deg);
   color: white;
   box-shadow: -4px 4px 0px #fb5300;
-  /* Orange */
+
   position: relative;
   transition: all 0.4s ease;
 }
@@ -48,7 +48,7 @@
   border-radius: 16px;
   border: none;
   background: linear-gradient(180deg, #ffbc09, #fb5300);
-  /* Yellow to Orange */
+
   box-shadow: inset 0px -6px 10px #3114494b;
   text-shadow: -1px 1px 3px #2a0f3fbb;
   transition: all 0.3s ease;
@@ -73,7 +73,7 @@
 
 
 /* card */
-/* General card styling */
+
 .uno-card {
   background-color: transparent;
   width: 190px;
@@ -83,7 +83,7 @@
   border-radius: 15px;
 }
 
-/* Card inner styling */
+
 .card-inner {
   position: relative;
   width: 100%;
@@ -99,7 +99,7 @@
   transform: rotateY(180deg) rotate(25deg);
 }
 
-/* Front and back faces */
+
 .front, .back {
   position: absolute;
   width: 100%;
@@ -222,4 +222,88 @@
   letter-spacing: -5px;
   transform: rotate(-25deg);
   text-shadow: -1px 1px 0 #191F1F,-2px 2px 0 #191F1F,-3px 3px 0 #191F1F,-4px 4px 0 #191F1F,-5px 5px 0 #191F1F,-6px 6px 0 #191F1F,-7px 7px 0 #191F1F,-8px 8px 0 #191F1F,-9px 9px 0 #191F1F,-10px 10px 0 #fff,-11px 11px 0 #fff;
+}
+
+
+/* input */
+
+
+.input-wrapper {
+  position: relative;
+  width: 50%;
+  max-width: 500px;
+}
+
+.input-wrapper input {
+  background-color: #f5f5f5;
+  border: 2px solid #ddd;
+  padding: 1.2rem 1rem;
+  font-size: 1.1rem;
+  width: 100%;
+  border-radius: 1.5rem;
+  color: #ff7f7f;
+  box-shadow: 0 0.4rem #dfd9d9, inset 0 0 0 transparent;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #ff7f7f;
+  box-shadow: 0 0.6rem #dfd9d9, inset 0 0 10px rgba(255, 127, 127, 0.2);
+  transform: translateY(-3px) scale(1.01);
+}
+
+.input-wrapper input::placeholder {
+  color: #ccc;
+  transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus::placeholder {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.input-wrapper::after {
+  content: "🔍";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.input-wrapper:hover::after {
+  opacity: 1;
+  right: 1.5rem;
+}
+
+/* New shit */
+.input-wrapper input:hover {
+  background-color: #f9f9f9;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.input-wrapper input:invalid {
+  animation: shake 0.5s ease-in-out;
+  border-color: #ff4d4d;
 }
