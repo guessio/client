@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import io from "socket.io-client";
@@ -5,7 +6,6 @@ import { useLocation } from "react-router-dom";
 const socket = io("http://localhost:3000");
 const DashboardPage = (state) => {
   const cards = Array.from({ length: 50 }, (_, i) => i + 1);
-
 
   const isRoomMaster = useLocation()
 
@@ -128,5 +128,6 @@ const DashboardPage = (state) => {
     </>
   );
 };
+
 
 export default DashboardPage;

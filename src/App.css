@@ -73,7 +73,7 @@
 
 
 /* card */
-
+/* General card styling */
 .uno-card {
   background-color: transparent;
   width: 190px;
@@ -83,6 +83,7 @@
   border-radius: 15px;
 }
 
+/* Card inner styling */
 .card-inner {
   position: relative;
   width: 100%;
@@ -98,6 +99,7 @@
   transform: rotateY(180deg) rotate(25deg);
 }
 
+/* Front and back faces */
 .front, .back {
   position: absolute;
   width: 100%;
@@ -114,6 +116,57 @@
   justify-content: center;
   align-items: center;
 }
+
+
+.uno-card:nth-child(-n+5) .front {
+  background-color: #ffbc09; 
+}
+
+
+.uno-card:nth-child(n+6):nth-child(-n+10) .front {
+  background-color: #1e90ff;
+}
+
+
+.uno-card:nth-child(n+11):nth-child(-n+15) .front {
+  background-color: #32cd32; 
+}
+
+
+.uno-card:nth-child(n+16):nth-child(-n+20) .front {
+  background-color: #ff4500;
+}
+
+
+.uno-card:nth-child(n+21):nth-child(-n+25) .front {
+  background-color: #9932cc; 
+}
+
+
+.uno-card:nth-child(n+26):nth-child(-n+30) .front {
+  background-color: #ffd700;
+}
+
+
+.uno-card:nth-child(n+31):nth-child(-n+35) .front {
+  background-color: #ff69b4; 
+}
+
+
+.uno-card:nth-child(n+36):nth-child(-n+40) .front {
+  background-color: #00ced1; 
+}
+
+
+.uno-card:nth-child(n+41):nth-child(-n+45) .front {
+  background-color: #8b4513; 
+}
+
+
+.uno-card:nth-child(n+46):nth-child(-n+50) .front {
+  background-color: #dc143c; 
+}
+
 
 .front::after {
   content: attr(data-content);
@@ -132,34 +185,6 @@
   text-shadow: -1px 1px 0 #191F1F,-2px 2px 0 #191F1F,-3px 3px 0 #191F1F,-4px 4px 0 #191F1F,-5px 5px 0 #191F1F,-6px 6px 0 #191F1F,-7px 7px 0 #191F1F,-8px 8px 0 #191F1F,-9px 9px 0 #191F1F;
 }
 
-.front-bg {
-  width: 90%;
-  height: 90%;
-  background: #ffbc09;
-  border-radius: 15px;
-}
-
-.front-bg::after {
-  content: "2";
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
-  font-size: 2em;
-  color: white;
-  font-weight: 900;
-  text-shadow: -1px 1px 0 #191F1F,-2px 2px 0 #191F1F,-3px 3px 0 #191F1F,-4px 4px 0 #191F1F,-5px 5px 0 #191F1F;
-}
-
-.front-bg::before {
-  content: "2";
-  position: absolute;
-  top: 10px;
-  left: 20px;
-  font-size: 2em;
-  color: white;
-  font-weight: 900;
-  text-shadow: -1px 1px 0 #191F1F,-2px 2px 0 #191F1F,-3px 3px 0 #191F1F,-4px 4px 0 #191F1F,-5px 5px 0 #191F1F;
-}
 
 .back {
   background-color: #fff;

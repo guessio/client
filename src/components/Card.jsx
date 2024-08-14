@@ -1,25 +1,25 @@
 import React from 'react';
 
-
 function Card({ num }) {
 
+    const handleClick = () => {
+        console.log(`Card number: ${num}`);
+    };
+
     return (
-        
-        <div class="uno-card">
-            <div class="card-inner">
-                <div class="front" data-content={num}>
-                    <div class="front-bg"></div>
+        <div className="uno-card" onClick={handleClick}>
+            <div className="card-inner">
+                <div value={num} className="front" data-content={num}>
+                    <div className="front-bg"></div>
                 </div>
-                <div class="back">
-                    <div class="back-bg">
-                        <p class="uno">Pick</p>
+                <div className="back">
+                    <div className="back-bg">
+                        <p className="uno">Pick</p>
                     </div>
                 </div>
             </div>
         </div>
     );
 }
-
-
 
 export default Card;
