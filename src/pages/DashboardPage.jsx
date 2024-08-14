@@ -3,25 +3,73 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import io from "socket.io-client";
 import { useLocation } from "react-router-dom";
-const socket = io("http://localhost:3000");
+
+const socket = io("https://guessio-server.rollyroller.com");
+
 const DashboardPage = (state) => {
   const cards = Array.from({ length: 50 }, (_, i) => i + 1);
 
-  const isRoomMaster = useLocation()
 
+
+  let isRoomMaster = useLocation()
   
-  useEffect(()=>{
+  useEffect(() => {
+    socket.on('roomMasterAssigned', (player) => {
+        if (player.id === socket.id) {
+            setIsRoomMaster(true);
+            // simpan di localStorage
+            // next nya request ke server apakah gue rm atau bukan
+        }
+    });
 
-    
-  },[])
+    socket.on('playersUpdate', (players) => {
+        setPlayers(players);
+    });
 
-//   const [username, setUsername] = useState('');
-//     const [isJoined, setIsJoined] = useState(false);
-//     const [isRoomMaster, setIsRoomMaster] = useState(false);
-//     const [players, setPlayers] = useState([]);
-//     const [guess, setGuess] = useState('');
+    socket.on('game:status', (statusGame) => {
+      setGameStatus(statusGame)
+    })
+
+    socket.on('gameStart', () => {
+        setGameStatus('playing');
+        // navigate ke /play?isRoomMaster=isRoomMaster
+    });
+
+    socket.on('countdownUpdate', (timeLeft) => {
+        setCountdown(timeLeft);
+    });
+
+    socket.on('guessResult', ({ playerId, guess }) => {
+        setGuesses((prevGuesses) => [...prevGuesses, { playerId, guess }]);
+    });
+
+    socket.on('gameEnd', ({ winnerId, winnerName }) => {
+        if (winnerId) {
+            alert(`Game Over! The winner is ${winnerName}`);
+        } else {
+            alert('Time\'s up! No one guessed the correct number.');
+        }
+        setGameStatus('ended');
+    });
+
+    return () => {
+        socket.off('roomMasterAssigned');
+        socket.off('playersUpdate');
+        socket.off('waitingForPlayers');
+        socket.off('gameStart');
+        socket.off('countdownUpdate');
+        socket.off('guessResult');
+        socket.off('gameEnd');
+    };
+}, []);
+
+  const [username, setUsername] = useState('');
+    const [isJoined, setIsJoined] = useState(false);
+    // const [isRoomMaster, setIsRoomMaster] = useState(false);
+    const [players, setPlayers] = useState([]);
+    const [guess, setGuess] = useState('');
     const [countdown, setCountdown] = useState(180);
-//     const [gameStatus, setGameStatus] = useState('waiting');
+    const [gameStatus, setGameStatus] = useState('waiting');
     const [secretNumber, setSecretNumber] = useState('');
     const [guesses, setGuesses] = useState([]);
 
@@ -101,7 +149,7 @@ const DashboardPage = (state) => {
         <div>
           <h2>Game in Progress</h2>
           <p>Time Left: {countdown} seconds</p>
-          {isRoomMaster ? (
+          {isRoomMaster.state ? (
             <div>
               <h3>Number:</h3>
               <h3>{secretNumber}</h3>
@@ -124,6 +172,7 @@ const DashboardPage = (state) => {
         </div>
       )} 
 
+ 
      
     </>
   );

@@ -2,63 +2,61 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:3000");
+const socket = io("https://guessio-server.rollyroller.com");
 
 export default function AddPlayerPage() {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [isJoined, setIsJoined] = useState(false);
   const [isRoomMaster, setIsRoomMaster] = useState(false);
   const [players, setPlayers] = useState([]);
-  const [gameStatus, setGameStatus] = useState('waiting');
-  const [secretNumber, setSecretNumber] = useState('');
+  const [gameStatus, setGameStatus] = useState("waiting");
+  const [secretNumber, setSecretNumber] = useState("");
 
   useEffect(() => {
-      socket.on('roomMasterAssigned', (player) => {
-          if (player.id === socket.id) {
-              setIsRoomMaster(true);
-              // simpan di localStorage
-              // next nya request ke server apakah gue rm atau bukan
-          }
-      });
+    socket.on("roomMasterAssigned", (player) => {
+      if (player.id === socket.id) {
+        setIsRoomMaster(true);
+        // simpan di localStorage
+        // next nya request ke server apakah gue rm atau bukan
+      }
+    });
 
-      socket.on('playersUpdate', (players) => {
-          setPlayers(players);
-      });
+    socket.on("playersUpdate", (players) => {
+      setPlayers(players);
+    });
 
-      socket.on('game:status', (statusGame) => {
-        setGameStatus(statusGame)
-        if(statusGame === "playing"){
-            navigate("/app")
-        }
-        
-      })
+    socket.on("game:status", (statusGame) => {
+      setGameStatus(statusGame);
+      
+    });
 
-  
-         return () => {
-          socket.off('roomMasterAssigned');
-          socket.off('playersUpdate');
-          socket.off('waitingForPlayers');
-          socket.off('gameStart');
-     
-      };
+    return () => {
+      socket.off("roomMasterAssigned");
+      socket.off("playersUpdate");
+      socket.off("waitingForPlayers");
+      socket.off("gameStart");
+    };
   }, []);
 
   const handleJoinGame = () => {
-      socket.emit('joinGame', username);
-      setIsJoined(true);
+    socket.emit("joinGame", username);
+    setIsJoined(true);
   };
 
   const handleSetNumber = () => {
-      if (isRoomMaster) {
-          socket.emit('setNumber', secretNumber);
-        }
-    };
-    
+    if (isRoomMaster) {
+      socket.emit("setNumber", secretNumber);
+    }
+  };
 
-  console.log(isJoined, gameStatus, username, isRoomMaster, '<<<<<<');
-  
+  console.log(isJoined, gameStatus, username, isRoomMaster, "<<<<<<");
+
+  if (gameStatus  === "playing") {     
+        
+    navigate("/app", { state : isRoomMaster  });
+  }
 
   return (
     <>
@@ -93,7 +91,6 @@ export default function AddPlayerPage() {
                 </div>
               ) : (
                 <div>Waiting Room Master Picking A Number...</div>
-            
               )}
             </div>
           )}
