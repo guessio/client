@@ -64,6 +64,7 @@ export default function AddPlayerPage() {
         icon: 'error',
         confirmButtonText: 'OK'
       });
+      
       return;
     }
     socket.emit("joinGame", username);

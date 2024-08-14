@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import io from "socket.io-client";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 // const socket = io("https://guessio-server.rollyroller.com");
@@ -9,6 +9,7 @@ const socket = io("http://localhost:3000");
 
 
 const DashboardPage = () => {
+  const navigate = useNavigate()
   const location = useLocation();
   const { isRoomMaster, secretNumber: initialSecretNumber } = location.state || {};
   
@@ -43,7 +44,9 @@ const DashboardPage = () => {
           text: `The winner is ${winnerName}`,
           icon: 'success',
           confirmButtonText: 'OK'
+          
         });
+        navigate('/')
       } else {
         Swal.fire({
           title: 'Time\'s up!',
