@@ -1,12 +1,13 @@
 import React from 'react';
 
 
-function Card({ number }) {
+function Card({ num }) {
+
     return (
         
         <div class="uno-card">
             <div class="card-inner">
-                <div class="front">
+                <div class="front" data-content={num}>
                     <div class="front-bg"></div>
                 </div>
                 <div class="back">

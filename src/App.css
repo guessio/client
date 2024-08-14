@@ -116,7 +116,7 @@
 }
 
 .front::after {
-  content: "2";
+  content: attr(data-content);
   color: #ffbc09;
   display: flex;
   align-items: center;
