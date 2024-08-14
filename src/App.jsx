@@ -1,25 +1,37 @@
 import './App.css'
-import logo from './assets/logo.png'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import MainLayout from './pages/MainLayout';
+import HomePage from './pages/HomePage';
+import DashboardPage from './pages/DashboardPage';
 
 
+const router = createBrowserRouter([
+  {
+    element: <MainLayout />,
+    children:[
+      {
+        path:'/',
+        element:<HomePage/>
+      },
+      {
+        path:'/app',
+        element:<DashboardPage/>
+      }
+    ]
+  }
+
+])
 
 function App() {
 
 
   return (
     <>
-      <div className='flex justify-center items-center max-w-full min-h-screen background '>
-        <div className='text-center'>
-          <img src={logo} alt="" className='w-1/2 h-1/2 mx-auto -mt-36' />
-
-        </div>
-        <div class="btn-container">
-          <button class="glowing-button">
-            PLAY NOW
-            <span class="arrow">➔</span>
-          </button>
-        </div>
-      </div>
+      <RouterProvider router={router} />
     </>
   )
 }

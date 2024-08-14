@@ -1,32 +1,24 @@
 import React from 'react';
-import './App.css';
+
 
 function Card({ number }) {
-  return (
-    <div className="uno-card">
-      <div className="card-inner">
-        <div className="front">
-          <div className="front-bg"></div>
-          <span className="card-number">{number}</span>
+    return (
+        
+        <div class="uno-card">
+            <div class="card-inner">
+                <div class="front">
+                    <div class="front-bg"></div>
+                </div>
+                <div class="back">
+                    <div class="back-bg">
+                        <p class="uno">Pick</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div className="back">
-          <div className="back-bg"></div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
-function App() {
-  const cards = Array.from({ length: 50 }, (_, i) => i + 1);
 
-  return (
-    <div className="flex flex-col">
-      {cards.map((number) => (
-        <Card key={number} number={number} />
-      ))}
-    </div>
-  );
-}
 
-export default App;
+export default Card;
