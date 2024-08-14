@@ -7,6 +7,7 @@ import {
 import MainLayout from './pages/MainLayout';
 import HomePage from './pages/HomePage';
 import DashboardPage from './pages/DashboardPage';
+import AddPlayerPage from './pages/AddPlayerPage';
 
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<HomePage/>
+      },
+      {
+        path : "/add-player",
+        element : <AddPlayerPage/>
       },
       {
         path:'/app',

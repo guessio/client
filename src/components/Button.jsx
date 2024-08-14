@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Button = () => {
     return (
-        <Link to={'/app'}>
+        <Link to={'/add-player'}>
         <div class="btn-container">
             <button class="glowing-button">
                 PLAY NOW
