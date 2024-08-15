@@ -109,7 +109,7 @@ export default function AddPlayerPage() {
         ) : (
           <div className="text-center">
             {gameStatus === "waiting" && (
-              <p className="text-xl">Waiting for more players... ({players.length}/3)</p>
+              <p className="text-4xl font-black">Waiting for more players <br></br> ({players.length}/3)</p>
             )}
             {gameStatus === "ready" && (
               <div>

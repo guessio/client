@@ -265,7 +265,7 @@
 }
 
 .input-wrapper::after {
-  content: "🔍";
+  content: "🖕🏼";
   position: absolute;
   right: 1rem;
   top: 50%;
@@ -305,5 +305,5 @@
 
 .input-wrapper input:invalid {
   animation: shake 0.5s ease-in-out;
-  border-color: #ff4d4d;
+  border-color: #ff7f7f;
 }
