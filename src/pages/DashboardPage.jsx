@@ -12,7 +12,7 @@ const DashboardPage = () => {
   const navigate = useNavigate()
   const location = useLocation();
   const { isRoomMaster, secretNumber: initialSecretNumber } = location.state || {};
-  
+
   const [players, setPlayers] = useState([]);
   const [countdown, setCountdown] = useState(180);
   const [gameStatus, setGameStatus] = useState('playing');
@@ -44,7 +44,7 @@ const DashboardPage = () => {
           text: `The winner is ${winnerName}`,
           icon: 'success',
           confirmButtonText: 'OK'
-          
+
         });
         navigate('/')
       } else {
@@ -71,8 +71,16 @@ const DashboardPage = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Game in Progress</h2>
-      <p className="text-xl mb-4">Time Left: {countdown} seconds</p>
+      <div className="flex justify-between p-10 border border-gray-400/50 rounded-2xl mb-8">
+        <div>
+          <h2 className="text-2xl font-bold mb-4">Game in Progress</h2>
+          <p className="text-xl mb-4">Pick your card</p>
+        </div>
+        <div>
+          <p className="text-xl mb-4">Time Left:</p>
+          <p className="text-xl mb-4">{countdown} seconds</p>
+        </div>
+      </div>
       {isRoomMaster ? (
         <div>
           <h3 className="text-xl font-semibold mb-2">Secret Number: {secretNumber}</h3>
