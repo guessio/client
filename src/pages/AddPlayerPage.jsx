@@ -113,22 +113,25 @@ export default function AddPlayerPage() {
             )}
             {gameStatus === "ready" && (
               <div>
-                <h2 className="text-2xl font-bold mb-4">Game Ready</h2>
+                <h2 className="text-4xl font-black mb-4">Game Ready!</h2>
                 {isRoomMaster ? (
                   <div>
-                    <h3 className="text-xl mb-2">You are the Room Master</h3>
-                    <input
-                      className="text-black px-3 py-2 rounded mb-2 w-full text-center"
-                      type="number"
-                      placeholder="Set the secret number (1-50)"
-                      value={secretNumber}
-                      onChange={(e) => setSecretNumber(e.target.value)}
-                      min="1"
-                      max="50"
-                    />
+                    <h3 className="text-2xl text-gray-200 mb-2">You are the Room Master</h3>
+                    <div className="input-wrapper w-full">
+
+                      <input
+                        className="text-black px-3 py-2 rounded mb-2 w-full text-center input"
+                        type="number"
+                        placeholder="Set the secret number..."
+                        value={secretNumber}
+                        onChange={(e) => setSecretNumber(e.target.value)}
+                        min="1"
+                        max="50"
+                      />
+                    </div>
                     <button
                       onClick={handleSetNumber}
-                      className="bg-green-500 text-white px-4 py-2 rounded w-full mt-2"
+                      className="bg-green-500 text-white px-4 py-2 rounded w-full mt-2 glowing-button"
                     >
                       Set Number
                     </button>
