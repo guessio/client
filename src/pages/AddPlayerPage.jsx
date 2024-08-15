@@ -64,7 +64,7 @@ export default function AddPlayerPage() {
         icon: 'error',
         confirmButtonText: 'OK'
       });
-      
+
       return;
     }
     socket.emit("joinGame", username);
@@ -87,58 +87,61 @@ export default function AddPlayerPage() {
   };
 
   return (
-    <div className="p-4">
-      {!isJoined ? (
-        <div>
-          <h1 className="text-2xl font-bold mb-4">Join the Game</h1>
-          <input
-            type="text"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="text-black px-3 py-2 rounded mb-2"
-          />
-          <button 
-            onClick={handleJoinGame}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
-            Join Game
-          </button>
-        </div>
-      ) : (
-        <div>
-          {gameStatus === "waiting" && (
-            <p className="text-xl">Waiting for more players... ({players.length}/3)</p>
-          )}
-          {gameStatus === "ready" && (
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Game Ready</h2>
-              {isRoomMaster ? (
-                <div>
-                  <h3 className="text-xl mb-2">You are the Room Master</h3>
-                  <input
-                    className="text-black px-3 py-2 rounded mb-2"
-                    type="number"
-                    placeholder="Set the secret number (1-50)"
-                    value={secretNumber}
-                    onChange={(e) => setSecretNumber(e.target.value)}
-                    min="1"
-                    max="50"
-                  />
-                  <button 
-                    onClick={handleSetNumber}
-                    className="bg-green-500 text-white px-4 py-2 rounded"
-                  >
-                    Set Number
-                  </button>
-                </div>
-              ) : (
-                <div className="text-xl">Waiting for Room Master to pick a number...</div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
+    <div className="p-4 w-full flex justify-center items-center min-h-screen">
+      <div className="text-center w-2/3 flex flex-col justify-center items-center">
+        {!isJoined ? (
+          <div className="input-wrapper text-center">
+            <h1 className="text-2xl font-bold mb-4">Join the Game</h1>
+            <input
+              type="text"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="text-black px-3 py-2 rounded mb-2 text-center"
+            />
+            <button
+              onClick={handleJoinGame}
+              className="bg-blue-500 text-white px-4 py-2 rounded glowing-button w-full mt-2"
+            >
+              Join Game
+            </button>
+          </div>
+        ) : (
+          <div className="text-center">
+            {gameStatus === "waiting" && (
+              <p className="text-xl">Waiting for more players... ({players.length}/3)</p>
+            )}
+            {gameStatus === "ready" && (
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Game Ready</h2>
+                {isRoomMaster ? (
+                  <div>
+                    <h3 className="text-xl mb-2">You are the Room Master</h3>
+                    <input
+                      className="text-black px-3 py-2 rounded mb-2 w-full text-center"
+                      type="number"
+                      placeholder="Set the secret number (1-50)"
+                      value={secretNumber}
+                      onChange={(e) => setSecretNumber(e.target.value)}
+                      min="1"
+                      max="50"
+                    />
+                    <button
+                      onClick={handleSetNumber}
+                      className="bg-green-500 text-white px-4 py-2 rounded w-full mt-2"
+                    >
+                      Set Number
+                    </button>
+                  </div>
+                ) : (
+                  <div className="text-xl">Waiting for Room Master to pick a number...</div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
+
   );
 }
