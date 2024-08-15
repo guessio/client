@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        lucky: ["Luckiest Guy", "cursive"],
+      }
+    },
   },
   plugins: [],
 }

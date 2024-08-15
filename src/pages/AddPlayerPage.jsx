@@ -91,7 +91,7 @@ export default function AddPlayerPage() {
       <div className="text-center w-2/3 flex flex-col justify-center items-center">
         {!isJoined ? (
           <div className="input-wrapper text-center">
-            <h1 className="text-2xl font-bold mb-4">Join the Game</h1>
+            <h1 className="text-5xl font-bold mb-4 font-lucky tracking-wider">Join the Game</h1>
             <input
               type="text"
               placeholder="Enter your username"
@@ -101,7 +101,7 @@ export default function AddPlayerPage() {
             />
             <button
               onClick={handleJoinGame}
-              className="bg-blue-500 text-white px-4 py-2 rounded glowing-button w-full mt-2"
+              className="bg-blue-500 text-white px-4 py-2 rounded glowing-button w-full mt-2 font-lucky tracking-wider"
             >
               Join Game
             </button>
